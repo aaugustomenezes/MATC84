@@ -1,0 +1,16 @@
+.footer {
+      
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer span {
+    font-weight: 300;
+    font-size: 1.2rem;   
+}
+
+.footer .logo {
+    max-height: 32px;
+}

@@ -1,0 +1,19 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Caneta Compactor 07",
+      "preco": 1.51
+    },
+    {
+      "id": 2,
+      "nome": "Caderno 10 matérias",
+      "preco": 20.3
+    },
+    {
+      "id": 3,
+      "nome": "Agenda",
+      "preco": 12.3
+    }  
+  ]
+}
