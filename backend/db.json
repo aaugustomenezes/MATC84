@@ -1,24 +1,19 @@
 {
   "produtos": [
     {
-      "id": 1,
-      "nome": "Caneta Compactor 07",
-      "preco": 1.51
+      "name": "teste",
+      "price": "10",
+      "id": 8
     },
     {
-      "id": 2,
-      "nome": "Caderno 10 matérias",
-      "preco": 20.3
+      "name": "algo",
+      "price": "12.50",
+      "id": 9
     },
     {
-      "id": 3,
-      "nome": "Agenda",
-      "preco": 12.3
-    },
-    {
-      "name": "carro",
-      "price": "32.000",
-      "id": 4
+      "name": "Carro",
+      "price": "45896",
+      "id": 10
     }
   ]
 }
