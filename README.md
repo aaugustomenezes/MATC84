@@ -13,7 +13,8 @@
 - Typescript
 - NodeJs
 - Postgresql
-- CSS3
+- HTML
+- CSS
 
 #### Instruções:
 - Após baixar o projeto, atulize-o.
