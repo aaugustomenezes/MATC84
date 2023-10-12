@@ -12,7 +12,7 @@
 - Angular
 - Typescript
 - NodeJs
-- Postgresql
+- PostgreSQL
 - HTML
 - CSS
 
