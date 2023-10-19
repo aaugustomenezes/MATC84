@@ -55,13 +55,17 @@ export class ProductService {
       );
   }
 
-  delete(id?: number): Observable<Product> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<Product>(url).pipe(
-      map ((obj) => obj),
-      catchError(e => this.errorHandler(e))
-      );
+  delete(id?: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
+
+  // delete(id?: number): Observable<Product> {
+  //   const url = `${this.baseUrl}/${id}`;
+  //   return this.http.delete<Product>(url).pipe(
+  //     map ((obj) => obj),
+  //     catchError(e => this.errorHandler(e))
+  //     );
+  // }
   //Avisar ao usuário sobre a ocorrência de um erro.
   errorHandler(e: any): Observable<any> {
     this.showMessage('Ocorreu um erro!', true)
