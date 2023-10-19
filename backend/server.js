@@ -18,24 +18,41 @@ app.get('/produtos', async (req, res) => {
     const result = await pool.query('SELECT * FROM produtos');
     res.json(result.rows);
   });
-  
-  app.post('/produtos', async (req, res) => {
-    const { name, price } = req.body;
-    console.log('Corpo da Requisição:', req.body); // Log para verificar o corpo da requisição
-    
-    if (!name || !price) {
-      return res.status(400).send('Nome e preço são obrigatórios');
-    }
-    
+
+  app.delete('/produtos/:id', async (req, res) => {
+  const { id } = req.params
     try {
-      const result = await pool.query('INSERT INTO produtos(nome, preco) VALUES($1, $2) RETURNING *', [name, price]);
-      res.json(result.rows[0]);
+
+      await pool.query('DELETE FROM produtos WHERE id = $1', [id])
+
+      res.status(200).send({message : 'Product deleted successfully!'})
     } catch (error) {
-      console.error('Erro ao inserir produto:', error); // Log para verificar erros
-      res.status(500).send('Erro interno do servidor');
+      console.error("Error deleting product:", error);
+        res.status(500).send({message : 'Failed to delet the product'})
     }
-  });
+
+
+  })
+  
+app.post('/produtos', async (req, res) => {
+  const { name, price } = req.body;
+  console.log('Corpo da Requisição:', req.body); // Log para verificar o corpo da requisição
+  
+  if (!name || !price) {
+    return res.status(400).send('Nome e preço são obrigatórios');
+  }
+  
+  try {
+    const result = await pool.query('INSERT INTO produtos(name, price) VALUES($1, $2) RETURNING *', [name, price]);
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Erro ao inserir produto:', error); // Log para verificar erros
+    res.status(500).send('Erro interno do servidor');
+  }
+});
+
 const port = 3001;
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

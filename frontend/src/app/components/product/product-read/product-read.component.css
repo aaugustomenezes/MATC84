@@ -9,6 +9,19 @@ table {
   color: #0242f1;
 }
 
-.delete > i {
-  color: #ff0000;
+.edit > i {
+  color: blue;
+}
+
+.edit:hover > i {
+  color: darkblue;
+}
+.delete-icon {
+  color: red;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+  color: darkred;
 }
