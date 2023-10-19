@@ -30,8 +30,6 @@ app.get('/produtos', async (req, res) => {
       console.error("Error deleting product:", error);
         res.status(500).send({message : 'Failed to delet the product'})
     }
-
-
   })
   
 app.post('/produtos', async (req, res) => {
@@ -48,6 +46,23 @@ app.post('/produtos', async (req, res) => {
   } catch (error) {
     console.error('Erro ao inserir produto:', error); // Log para verificar erros
     res.status(500).send('Erro interno do servidor');
+  }
+});
+
+app.get('/produtos/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('SELECT * FROM produtos WHERE id = $1', [id]);
+
+    if (result.rows.length === 0) {
+      res.status(404).send({ message: 'Produto não encontrado!' });
+    } else {
+      res.json(result.rows[0]);
+    }
+  } catch (error) {
+    console.error("Error fetching product by ID:", error);
+    res.status(500).send({ message: 'Erro ao buscar o produto' });
   }
 });
 
