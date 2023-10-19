@@ -66,6 +66,28 @@ app.get('/produtos/:id', async (req, res) => {
   }
 });
 
+app.put('/produtos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, price } = req.body;
+
+  if (!name || !price) {
+    return res.status(400).send('Nome e preço são obrigatórios');
+  }
+
+  try {
+    const result = await pool.query('UPDATE produtos SET name = $1, price = $2 WHERE id = $3 RETURNING *', [name, price, id]);
+
+    if (result.rows.length === 0) {
+      res.status(404).send({ message: 'Produto não encontrado!' });
+    } else {
+      res.json(result.rows[0]);
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).send({ message: 'Erro ao atualizar o produto' });
+  }
+});
+
 const port = 3001;
 
 app.listen(port, () => {
